@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/tensorflow:21.10-tf2-py3
+
+%help
+    Check package versions: https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/rel_21-10.html#rel_21-10
+    Release 21.10 is based on NVIDIA CUDA 11.4.2 with cuBLAS 11.6.5.2, which requires NVIDIA Driver release 470 or later.
+    tensorflow 2.6.0 included
+
+%post
+    # Pilot3 dependencies
+    pip install torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+    pip install transformers==4.16.2 torchmetrics==0.7.0 webdataset==0.1.62
+
+    # CANDLE dependencies
+    pip install pandas==1.4.0 tables==3.7.0 astropy==5.0.1 patsy==0.5.2 statsmodels==0.13.1 requests==2.26.0 matplotlib==3.5.1 numba==0.55.1 \
+                scikit-learn==1.0.2 tqdm==4.62.3 pycodestyle==2.8.0 flake8==4.0.1
+    ldconfig
+
